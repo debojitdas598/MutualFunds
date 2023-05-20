@@ -15,12 +15,12 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class AutoComplete {
+public class AutoCompleteMutualFunds {
 
     Context context;
     ArrayList<String> strschemename;
     ArrayList<String> strschemecode;
-    public AutoComplete(Context context){
+    public AutoCompleteMutualFunds(Context context){
         this.context = context;
     }
 

@@ -26,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         int layout = android.R.layout.simple_list_item_1;
 
         search = findViewById(R.id.searchButton);
-        AutoComplete autoComplete = new AutoComplete(this);
+        AutoCompleteMutualFunds autoCompleteMutualFunds = new AutoCompleteMutualFunds(this);
 
         listSchemeName = new ArrayList<String>();
-        listSchemeName = autoComplete.schemeName();
+        listSchemeName = autoCompleteMutualFunds.schemeName();
 
         listSchemeCode = new ArrayList<String>();
-        listSchemeCode = autoComplete.schemeCode();
+        listSchemeCode = autoCompleteMutualFunds.schemeCode();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, listSchemeName);
