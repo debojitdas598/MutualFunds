@@ -11,8 +11,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.mutualfunds.Details;
+import com.example.mutualfunds.mf.DetailsMF;
 import com.example.mutualfunds.R;
+import com.example.mutualfunds.mf.MutualFundsSearch;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,7 +47,7 @@ public class Login extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), Details.class);
+            Intent intent = new Intent(getApplicationContext(), DetailsMF.class);
             startActivity(intent);
             finish();
         }
@@ -87,7 +88,7 @@ public class Login extends AppCompatActivity {
                                         progressBar.setVisibility(View.INVISIBLE);
                                         Toast.makeText(Login.this, "Login Succesfull.",
                                                 Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(),Details.class);
+                                        Intent intent = new Intent(getApplicationContext(), MutualFundsSearch.class);
                                         startActivity(intent);
                                         finish();
                                     } else {

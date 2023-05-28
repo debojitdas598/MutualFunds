@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.mutualfunds.Details;
+import com.example.mutualfunds.mf.DetailsMF;
 import com.example.mutualfunds.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,7 +54,7 @@ public class Register extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(getApplicationContext(), Details.class);
+            Intent intent = new Intent(getApplicationContext(), DetailsMF.class);
             startActivity(intent);
             finish();
         }
@@ -112,6 +112,12 @@ public class Register extends AppCompatActivity {
                                             databaseReference.child("users").child(userId).child("name").setValue(username);
                                             databaseReference.child("users").child(userId).child("email").setValue(email);
                                             databaseReference.child("users").child(userId).child("password").setValue(password);
+                                            databaseReference.child("users").child(userId).child("mfhistory").setValue("");
+                                            databaseReference.child("users").child(userId).child("cryptohistory").setValue("");
+                                            databaseReference.child("users").child(userId).child("stockshistory").setValue("");
+                                            databaseReference.child("users").child(userId).child("mffavourite").setValue("");
+                                            databaseReference.child("users").child(userId).child("cryptofavourite").setValue("");
+                                            databaseReference.child("users").child(userId).child("stocksfavourite").setValue("");
 
                                         }
 

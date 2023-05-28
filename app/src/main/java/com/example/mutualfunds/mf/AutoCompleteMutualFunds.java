@@ -1,6 +1,7 @@
-package com.example.mutualfunds;
+package com.example.mutualfunds.mf;
 
 import android.content.Context;
+import android.widget.FrameLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,7 +29,6 @@ public class AutoCompleteMutualFunds {
         strschemename = new ArrayList<>();
         String url = "https://api.mfapi.in/mf";
         RequestQueue queue = Volley.newRequestQueue(context);
-
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {

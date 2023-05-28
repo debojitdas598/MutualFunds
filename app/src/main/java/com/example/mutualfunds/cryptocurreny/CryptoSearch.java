@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
-import com.example.mutualfunds.AutoCompleteMutualFunds;
 import com.example.mutualfunds.R;
 
 import java.util.ArrayList;

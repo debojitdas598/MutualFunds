@@ -12,8 +12,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MutualFunds"
+        android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".authentication.UserAccount"
+            android:exported="true" />
+        <activity
+            android:name=".stocks.StocksSearch"
+            android:exported="true" />
+        <activity
+            android:name=".mf.MutualFundsSearch"
+            android:exported="true"
+            />
         <activity
             android:name=".cryptocurreny.CryptoSearch"
             android:exported="true" />
@@ -30,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Details"
+            android:name=".mf.DetailsMF"
             android:exported="true" />
         <activity
             android:name=".MainActivity"

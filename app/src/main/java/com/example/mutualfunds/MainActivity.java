@@ -11,53 +11,45 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.mutualfunds.cryptocurreny.CryptoSearch;
+import com.example.mutualfunds.mf.MutualFundsSearch;
+import com.example.mutualfunds.stocks.StocksSearch;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    AutoCompleteTextView autoCompleteTextView;
-    Button search;
-    ArrayList<String> listSchemeName;
-    ArrayList<String> listSchemeCode;
-    @SuppressLint("MissingInflatedId")
+    Button mutualfunds,crypto,stocks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int layout = android.R.layout.simple_list_item_1;
 
-        search = findViewById(R.id.searchButton);
-        AutoCompleteMutualFunds autoCompleteMutualFunds = new AutoCompleteMutualFunds(this);
+        mutualfunds = findViewById(R.id.mutualfunds);
+        crypto = findViewById(R.id.cryptocurrency);
+        stocks = findViewById(R.id.stocks);
 
-        listSchemeName = new ArrayList<String>();
-        listSchemeName = autoCompleteMutualFunds.schemeName();
-
-        listSchemeCode = new ArrayList<String>();
-        listSchemeCode = autoCompleteMutualFunds.schemeCode();
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, listSchemeName);
-        autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
-        autoCompleteTextView.setAdapter(adapter);
-
-        search.setOnClickListener(new View.OnClickListener() {
+        mutualfunds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(autoCompleteTextView.getText().toString()==""){
-                    Toast.makeText(getApplicationContext(),"Enter a MF name",Toast.LENGTH_SHORT).show();
-                }
-                else if(listSchemeName.indexOf(autoCompleteTextView.getText().toString())==-1){
-                    Toast.makeText(getApplicationContext(),"Enter a MF name",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    int index =  listSchemeName.indexOf(autoCompleteTextView.getText().toString().trim());
-                    String schemeCode = listSchemeCode.get(index);
-                    Toast.makeText(getApplicationContext(),schemeCode,Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this,Details.class);
-                    intent.putExtra("schemeCode",schemeCode);
-                    startActivity(intent);
-                }
+                Intent intent = new Intent(getApplicationContext(), MutualFundsSearch.class);
+                startActivity(intent);
             }
         });
+        crypto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CryptoSearch.class);
+                startActivity(intent);
+            }
+        });
+        stocks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StocksSearch.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
