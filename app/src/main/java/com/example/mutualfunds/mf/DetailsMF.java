@@ -48,6 +48,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class DetailsMF extends AppCompatActivity {
@@ -84,8 +86,22 @@ public class DetailsMF extends AppCompatActivity {
 
     private void returnPercentCalculator(int days, ArrayList<String> navssent , ArrayList<String> datessent ) {
 
-
+        int monthstoSubtract = days/30;
         double presentNAV = Math.round((Double.parseDouble(navssent.get(0).toString()))*100.0)/100.0;
+        int indexOfInitial = 0;
+        String presentDate = datessent.get(0);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate localDate = LocalDate.parse(presentDate, formatter);
+        LocalDate initiallocaldate = localDate.minusMonths(monthstoSubtract);
+        String initialdate = initiallocaldate.format(formatter);
+        while(!datessent.contains(initialdate)){
+           LocalDate localDateTemp = LocalDate.parse(initialdate,formatter);
+           LocalDate initiallocaldatetemp = localDateTemp.minusDays(1);
+           initialdate = initiallocaldatetemp.format(formatter);
+        }
+        indexOfInitial = datessent.indexOf(initialdate);
+
+
 
         double percentINC = (Double.valueOf(navssent.get(0)) - Double.valueOf(navssent.get(1)))/Double.valueOf(navssent.get(1));
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
@@ -106,7 +122,7 @@ public class DetailsMF extends AppCompatActivity {
             returnpercent.setText("-- %");
         }
         else{
-            double initialNAV =  Math.round((Double.parseDouble(navssent.get(days-1).toString()))*100.0)/100.0;
+            double initialNAV =  Math.round((Double.parseDouble(navssent.get(indexOfInitial).toString()))*100.0)/100.0;
             double absoluteNAV = ((presentNAV - initialNAV)/initialNAV);
             double annualisedNAV = (Math.pow((1+absoluteNAV),(365.0/Double.valueOf(days))))-1;
             if(days <365){
