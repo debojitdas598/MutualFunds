@@ -78,13 +78,9 @@ public class MutualFundsSearch extends AppCompatActivity {
         listSchemeName = schemeName();
         listSchemeCode = new ArrayList<String>();
         listSchemeCode = schemeCode();
-
-        items = new ArrayList<>();
         loading.setVisibility(View.VISIBLE);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        itemAdapter = new ItemAdapter(items);
-        recyclerView.setAdapter(itemAdapter);
+
 
 //        AutoCompleteMutualFunds autoCompleteMutualFunds = new AutoCompleteMutualFunds(this);
 
@@ -93,9 +89,45 @@ public class MutualFundsSearch extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, listSchemeName);
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
         autoCompleteTextView.setAdapter(adapter);
+        autoCompleteTextView.clearFocus();
 
 
     }
+
+    private void bookmarkDisplay() {
+        items = new ArrayList<>();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setVisibility(View.GONE);
+        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String mffavourite = snapshot.child(user.getUid()).child("mffavourite").getValue(String.class).toString();
+                String temp = "";
+                for (int i = 0; i < mffavourite.length(); i++) {
+                    if(mffavourite.charAt(i)!=';'){
+                        temp = temp + mffavourite.charAt(i);
+                    }
+                    else {
+                        items.add(new Item(temp));
+                        temp = "";
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        itemAdapter = new ItemAdapter(items);
+        recyclerView.setAdapter(itemAdapter);
+        recyclerView.setVisibility(View.VISIBLE);
+
+    }
+
 
     private void onSearch() {
 
@@ -246,5 +278,10 @@ public class MutualFundsSearch extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        bookmarkDisplay();
+    }
 }

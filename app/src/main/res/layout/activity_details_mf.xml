@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#90000000"
-
+        android:visibility="gone"
         android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -103,16 +103,17 @@
                     <TextView
                         android:id="@+id/name"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="70dp"
                         android:layout_weight="0.6"
                         android:text="Nippon India Banking &amp; Financial Services Fund-Growth Plan-Growth Option"
-                        android:textSize="19dp" />
+                        android:textSize="17dp" />
 
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/bookmark"
                         android:layout_weight="0.4"
-                        android:src="@drawable/bookmark2" />
+                        android:src="@drawable/bookmark1" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -147,7 +148,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:layout_margin="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 app:cardCornerRadius="15dp">
 
@@ -156,10 +159,7 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+
 
                         <TextView
                             android:id="@+id/returnpercent"
@@ -175,19 +175,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/type"
+                            android:layout_marginLeft="10dp"
                             android:text="3 Y annualised"
-                            android:textSize="12dp" />
+                            android:textSize="15dp" />
 
-                    </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <TextView
-                        android:id="@+id/changepercent"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="+0.20%"
-                        android:textColor="#008000" />
+
+
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -198,7 +192,10 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:layout_margin="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="5dp"
+
                 android:layout_weight="1"
                 app:cardCornerRadius="15dp">
 
@@ -215,15 +212,33 @@
                         android:id="@+id/date"
                         android:text="NAV : 26/05/23"
                         android:textSize="17dp" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:id="@+id/nav"
-                        android:layout_marginTop="5dp"
-                        android:text="110.32"
-                        android:textSize="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/nav"
+                    android:layout_marginTop="5dp"
+                    android:text="110.32"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/changepercent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="13dp"
+                    android:layout_marginTop="10dp"
+
+                    android:layout_marginBottom="5dp"
+                    android:text="+0.20%"
+                    android:textColor="#008000" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -259,6 +274,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="14dp"
+                    android:id="@+id/onemonth"
                     android:layout_weight="1"
                     android:text="1M"
                     android:textColor="@color/black"
@@ -269,6 +285,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="10dp"
+                    android:id="@+id/sixmonth"
+
                     android:layout_weight="1"
                     android:text="6M"
                     android:textColor="#808080"
@@ -280,6 +298,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:id="@+id/oneyear"
 
                     android:text="1Y"
                     android:textColor="#808080"
@@ -291,6 +310,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:id="@+id/threeyear"
 
                     android:text="3Y"
                     android:textColor="#808080"
@@ -302,6 +322,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:id="@+id/fiveyear"
 
                     android:text="5Y"
                     android:textColor="#808080"
@@ -313,6 +334,8 @@
                     android:layout_gravity="center_vertical"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:id="@+id/all"
+
                     android:text="ALL"
                     android:textColor="#808080"
                     android:textSize="20dp" />
